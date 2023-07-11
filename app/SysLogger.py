@@ -6,10 +6,13 @@ import numpy as np
 
 class SysLogger:
 
-    def __init__(self, process_name, monitoring_duration, sampling_interval=5):
+    def __init__(self, process_name, monitoring_duration=int, sampling_interval=5):
         self.process_name = process_name
         self.monitoring_duration = monitoring_duration
         self.sampling_interval = sampling_interval
+        if not isinstance(process_name, str) or not isinstance(monitoring_duration, int) or not isinstance(sampling_interval, int):
+            print("Only numerical types supported")
+            raise ValueError("Input Value is not correct")
 
     def get_process_id(self):
         process_id = os.popen('pgrep ' + self.process_name).read()
@@ -32,6 +35,8 @@ class SysLogger:
         file = open('top_out.log', 'w')
         file.write(top_out)
         file.close()
+
+        self.report_generator()
 
     def avg_calc(self, data_frame, column):
         df_temp = data_frame[column].str.extract('(\d+)', expand=False)

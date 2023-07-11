@@ -1,30 +1,30 @@
-Processes: 599 total, 2918 threads 
-2023/07/11 13:17:15    
-Load Avg: 4.50,   
-CPU usage: 7.12% idle  
-SharedLibs: 362M resident,   
-MemRegions: 523899 total, 1844M shared. 
-PhysMem: 16G used 144M unused. 
-VM: 55T vsize, swapins, 6635563(0) swapouts.
-Networks: packets: 27155560/34G   
-Disks: 19228445/348G read,   
+Processes: 609 total, 3104 threads 
+2023/07/11 16:59:42    
+Load Avg: 3.55,   
+CPU usage: 7.17% idle  
+SharedLibs: 371M resident,   
+MemRegions: 632770 total, 1707M shared. 
+PhysMem: 16G used 95M unused. 
+VM: 66T vsize, swapins, 6635563(0) swapouts.
+Networks: packets: 27578646/34G   
+Disks: 19558736/352G read,   
      
 PID COMMAND %CPU MEM PURG CMPRS
-470 firefox 0.0 932M 0B 365M
-File_descriptors 608
+470 firefox 0.0 934M 0B 476M
+File_descriptors 615
 
-Processes: 600 total, 2957 threads 
-2023/07/11 13:17:20    
-Load Avg: 4.50,   
-CPU usage: 6.61% idle  
-SharedLibs: 362M resident,   
-MemRegions: 524423 total, 1845M shared. 
-PhysMem: 16G used 140M unused. 
-VM: 55T vsize, swapins, 6635563(0) swapouts.
-Networks: packets: 27155605/34G   
-Disks: 19228724/348G read,   
+Processes: 609 total, 3079 threads 
+2023/07/11 16:59:47    
+Load Avg: 3.51,   
+CPU usage: 15.11% idle  
+SharedLibs: 371M resident,   
+MemRegions: 632718 total, 1707M shared. 
+PhysMem: 16G used 95M unused. 
+VM: 66T vsize, swapins, 6635563(0) swapouts.
+Networks: packets: 27578660/34G   
+Disks: 19558737/352G read,   
      
 PID COMMAND %CPU MEM PURG CMPRS
-470 firefox 0.0 932M 0B 365M
-File_descriptors 608
+470 firefox 0.0 934M 0B 476M
+File_descriptors 615
 

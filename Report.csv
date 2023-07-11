@@ -1,2 +1,2 @@
 Average %CPU Usage,Average Memory Usage,File descriptors,Memory leak
-0.0,932.0,608.0,No memory leak detected
+0.0,934.0,615.0,No memory leak detected
