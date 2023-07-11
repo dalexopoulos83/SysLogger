@@ -6,26 +6,23 @@ import numpy as np
 
 class SysLogger:
 
-    def __init__(self, process_name, monitoring_duration=int, sampling_interval=5):
+    def __init__(self, process_name, monitoring_duration, sampling_interval=5):
         self.process_name = process_name
         self.monitoring_duration = monitoring_duration
         self.sampling_interval = sampling_interval
-        if not isinstance(process_name, str) or not isinstance(monitoring_duration, int) or not isinstance(sampling_interval, int):
+        self.pid = os.popen('pgrep ' + self.process_name).read()
+        if not isinstance(process_name, str) or not isinstance(monitoring_duration, int) or not isinstance(
+                sampling_interval, int):
             print("Only numerical types supported")
             raise ValueError("Input Value is not correct")
 
-    def get_process_id(self):
-        process_id = os.popen('pgrep ' + self.process_name).read()
-        return process_id
-
     def start_monitoring(self):
         top_out = ""
-        pid = self.get_process_id()
 
         smps = round(self.monitoring_duration / self.sampling_interval)
         interval = self.sampling_interval
-        top_command = 'top -pid ' + pid.strip() + ' -n 1 -o -PID -l 1 | awk \'{print $1,$2,$3,$8,$9,$10}\''
-        lsof_command = 'lsof -p ' + pid.strip() + ' | wc -l'
+        top_command = 'top -pid ' + self.pid.strip() + ' -n 1 -o -PID -l 2 | awk \'{print $1,$2,$3,$8,$9,$10}\''
+        lsof_command = 'lsof -p ' + self.pid.strip() + ' | wc -l'
 
         for _ in np.arange(0, smps):
             top_out += os.popen(top_command).read()
@@ -51,12 +48,14 @@ class SysLogger:
         return max
 
     def pandas_cleanup_top_data(self):
+        str_filter = "PID|" + self.process_name
         top_raw_dataset = pd.read_table("top_out.log", header=None)
-        top_df_1 = top_raw_dataset[top_raw_dataset[0].str.contains("PID|470") == True]
+        top_df_1 = top_raw_dataset[top_raw_dataset[0].str.contains(str_filter.strip()) == True]
         top_dataset_list = list(top_df_1[0])
         top_line_split = [line.split(' ') for line in top_dataset_list]
         top_df_2 = pd.DataFrame(top_line_split)
         top_df_3 = top_df_2.rename(columns=top_df_2.iloc[0]).loc[1:]
+        print(top_df_3)
         top_df = top_df_3[top_df_3["PID"].str.contains("PID") == False]
 
         fd_df = top_raw_dataset[top_raw_dataset[0].str.contains("File_descriptors") == True]
@@ -73,7 +72,8 @@ class SysLogger:
         cpu_avg = self.avg_calc(top_df, '%CPU')
         memory_leak = self.memory_leak_calculator(mem_avg, fd_avg, top_df)
 
-        report = {'Average %CPU Usage': [cpu_avg], 'Average Memory Usage': [mem_avg], 'File descriptors': [fd_avg], 'Memory leak': memory_leak}
+        report = {'Average %CPU Usage': [cpu_avg], 'Average Memory Usage': [mem_avg], 'File descriptors': [fd_avg],
+                  'Memory leak': memory_leak}
         df = pd.DataFrame(report)
         print(df)
         print(memory_leak)

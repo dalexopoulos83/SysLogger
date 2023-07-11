@@ -4,7 +4,7 @@ This is a simple implementation of a process monitoring app.
 
 ## General Info 
 The app have a simple structure where in the class SysLogger under the folder app we have implemented a process monitoring tool. 
-It is taking as arguments the process name, the monitoring interval and the number of samples we want to capture. Also, the app 
+It is taking as arguments the process name, the monitoring interval and the sampling interval we want. Also, the app 
 have a memory leak detection implementation and is generating a report with the average CPU usage, the average memory usage, 
 the average file descriptors and if there is or there is not any memory leak.
 Under the SysLogger folder also are stored the report with the name "Report.csv", and the monitoring logs during the 
@@ -40,3 +40,6 @@ For the execution of the app the following libraries should be installed on the 
     pip install numpy
     pip install pandas
     pip install pytest
+
+### Notice 
+Because on the first sampling of top command the %CPU is always 0 we are taking two outputs for every sample we need.
