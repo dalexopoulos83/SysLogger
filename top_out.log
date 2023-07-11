@@ -1,0 +1,30 @@
+Processes: 599 total, 2918 threads 
+2023/07/11 13:17:15    
+Load Avg: 4.50,   
+CPU usage: 7.12% idle  
+SharedLibs: 362M resident,   
+MemRegions: 523899 total, 1844M shared. 
+PhysMem: 16G used 144M unused. 
+VM: 55T vsize, swapins, 6635563(0) swapouts.
+Networks: packets: 27155560/34G   
+Disks: 19228445/348G read,   
+     
+PID COMMAND %CPU MEM PURG CMPRS
+470 firefox 0.0 932M 0B 365M
+File_descriptors 608
+
+Processes: 600 total, 2957 threads 
+2023/07/11 13:17:20    
+Load Avg: 4.50,   
+CPU usage: 6.61% idle  
+SharedLibs: 362M resident,   
+MemRegions: 524423 total, 1845M shared. 
+PhysMem: 16G used 140M unused. 
+VM: 55T vsize, swapins, 6635563(0) swapouts.
+Networks: packets: 27155605/34G   
+Disks: 19228724/348G read,   
+     
+PID COMMAND %CPU MEM PURG CMPRS
+470 firefox 0.0 932M 0B 365M
+File_descriptors 608
+
